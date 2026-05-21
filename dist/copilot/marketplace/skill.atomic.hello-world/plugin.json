@@ -1,0 +1,37 @@
+{
+  "name": "hello-world-skill",
+  "version": "0.1.0",
+  "description": "Hello World skill plugin - bundled skills loaded directly by Copilot CLI",
+  "author": {
+    "name": "CG Global AIforSWE"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/CG-Global-AIforSWE/aif-optimisation-utils",
+  "keywords": [
+    "hello",
+    "world",
+    "example",
+    "skill"
+  ],
+  "displayName": "Hello World Skill",
+  "publisher": "CG-Global-AIforSWE",
+  "category": "example",
+  
+  "skills": ["skills/"],
+  
+  "engines": {
+    "copilot": "^1.0.0",
+    "vscode": "^1.85.0"
+  },
+  
+  "metadata": {
+    "canonical_id": "skill.atomic.hello-world",
+    "canonical_kind": "skill",
+    "plugin_type": "skill-static",
+    "generated_from": "canonical source",
+    "generator": "adapters/copilot/plugin_converter.py",
+    "source_url": "https://github.com/CG-Global-AIforSWE/aif-optimisation-utils",
+    "generation_timestamp": "auto",
+    "note": "Static skill plugin - skills loaded directly from skills/ folder"
+  }
+}
