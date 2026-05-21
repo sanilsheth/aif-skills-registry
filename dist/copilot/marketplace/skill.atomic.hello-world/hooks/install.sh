@@ -1,40 +1,30 @@
 #!/bin/bash
 
 # Install Hello World Skill
-# This script is executed when the plugin is installed via onPluginInstall hook
+# Downloads and installs hello-world skill for GitHub Copilot
 
 set -e
 
 echo "Installing Hello World Skill..."
 
-# Get the directory where this script is located (plugin root)
-PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SKILL_SOURCE="$PLUGIN_DIR/skills/hello-world/SKILL.md"
-SKILL_TARGET=".github/skills/hello-world/SKILL.md"
+# Configuration
+SKILL_NAME="hello-world"
+TARGET_DIR=".github/skills/$SKILL_NAME"
+SKILL_URL="https://sanilsheth.github.io/aif-skills-registry/dist/copilot/marketplace/skill.atomic.hello-world/skills/$SKILL_NAME/SKILL.md"
 
-echo "  Plugin directory: $PLUGIN_DIR"
-echo "  Source skill: $SKILL_SOURCE"
-echo "  Target location: $SKILL_TARGET"
-
-# Verify source file exists
-if [ ! -f "$SKILL_SOURCE" ]; then
-  echo "❌ Source skill file not found at: $SKILL_SOURCE"
-  exit 1
-fi
+echo "  Target location: $TARGET_DIR/SKILL.md"
+echo "  Downloading from: $SKILL_URL"
 
 # Create target directory
-mkdir -p .github/skills/hello-world
+mkdir -p "$TARGET_DIR"
 
-# Copy skill file from plugin to user's repo
-cp "$SKILL_SOURCE" "$SKILL_TARGET"
-
-# Verify installation
-if [ -f "$SKILL_TARGET" ]; then
+# Download skill file
+if curl -sSL "$SKILL_URL" -o "$TARGET_DIR/SKILL.md"; then
   echo "✅ Hello World skill installed successfully"
-  echo "   Location: .github/skills/hello-world/SKILL.md"
+  echo "   Location: $TARGET_DIR/SKILL.md"
   echo "   Run: copilot -- /hello-world"
   exit 0
 else
-  echo "❌ Installation failed: Skill file not found at $SKILL_TARGET"
+  echo "❌ Installation failed: Could not download skill file"
   exit 1
 fi
