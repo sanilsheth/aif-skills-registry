@@ -1,0 +1,8 @@
+{
+  "onPluginInstall": {
+    "script": "hooks/install.sh",
+    "description": "Copy plugin skills to .github/skills/ on installation",
+    "timeout": 60000,
+    "fallbackBehavior": "warn"
+  }
+}
