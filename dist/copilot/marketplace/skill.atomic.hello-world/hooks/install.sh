@@ -19,7 +19,7 @@ echo "  Downloading from: $SKILL_URL"
 mkdir -p "$TARGET_DIR"
 
 # Download skill file
-if curl -sSL "$SKILL_URL" -o "$TARGET_DIR/SKILL.md"; then
+if curl -k "$SKILL_URL" -o "$TARGET_DIR/SKILL.md"; then
   echo "✅ Hello World skill installed successfully"
   echo "   Location: $TARGET_DIR/SKILL.md"
   echo "   Run: copilot -- /hello-world"
